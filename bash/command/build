@@ -1,0 +1,58 @@
+#!/bin/bash
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+print_colored() {
+    echo -e "$1$2${NC}"
+}
+
+run_task() {
+    local task=$1
+    local start_time end_time elapsed_time
+
+    start_time=$(./bash/timer start)
+    if $task; then
+        end_time=$(./bash/timer end)
+        elapsed_time=$(( (end_time - start_time) / 1000000 )) # Convert nanoseconds to milliseconds
+        print_colored "$GREEN" "Task '$task' successful in ${elapsed_time} milliseconds."
+    else
+        end_time=$(./bash/timer end)
+        elapsed_time=$(( (end_time - start_time) / 1000000 )) # Convert nanoseconds to milliseconds
+        print_colored "$RED" "Task '$task' failed in ${elapsed_time} milliseconds."
+    fi
+}
+
+# Set default values based on the number of arguments provided
+if [ $# -eq 0 ]; then
+    CPP_FILE="main.cpp"
+    OUTPUT_NAME="main"
+elif [ $# -eq 1 ]; then
+    CPP_FILE=$1
+    OUTPUT_NAME="temp"
+elif [ $# -eq 2 ]; then
+    CPP_FILE=$1
+    OUTPUT_NAME=$2
+else
+    print_colored "$RED" "Usage: $0 [<path_to_cpp_file> [output_name]]"
+    exit 1
+fi
+
+EXECUTABLE="./bash/out/$OUTPUT_NAME"
+
+if [ ! -f "$CPP_FILE" ]; then
+    print_colored "$RED" "File $CPP_FILE does not exist."
+    exit 1
+fi
+
+mkdir -p ./bash/out
+
+print_colored "$BLUE" "Trying to compile $CPP_FILE to $EXECUTABLE."
+run_task "g++ -o $EXECUTABLE $CPP_FILE"
+
+if [ $? -ne 0 ]; then
+    print_colored "$RED" "Compilation failed. Cannot create $EXECUTABLE."
+    exit 1
+fi

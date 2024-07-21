@@ -1,0 +1,56 @@
+{
+  "hash": "74d804190b56d7d07f6d7a41456348edfee7bf0ac71fba925c76a86971455bb6",
+  "ver": 1,
+  "vin_sz": 1,
+  "vout_sz": 2,
+  "size": 225,
+  "weight": 900,
+  "fee": 157080,
+  "relayed_by": "0.0.0.0",
+  "lock_time": 477228,
+  "tx_index": 6017350324759491,
+  "double_spend": false,
+  "time": 1500839760,
+  "block_index": 477230,
+  "block_height": 477230,
+  "inputs": [
+    {
+      "sequence": 4294967294,
+      "witness": "",
+      "script": "473044022036be6403aeb4e0e6fd54720b328d9d81bea32fb79684da0288743668fb5ef3ee02202023a71ef7217061fb9b4f35a05143de71447032e5a35b39c3d14b3210bad10b0121032725846bb7bc2e47b7b5a50670d77c8268f4d7f3243bdcf1b22174a67faaf528",
+      "index": 0,
+      "prev_out": {
+        "type": 0,
+        "spent": true,
+        "value": 4.92e6,
+        "n": 5,
+        "tx_index": 40031577549905,
+        "script": "76a914a83fc0fb6edecb5289ef3e333520e4235bdf8a8788ac",
+        "addr": "1GLctvTi81GDYZF5F6nif2MdbxUnAGHATZ",
+        "spending_outpoints": [{ "tx_index": 6017350324759491, "n": 0 }]
+      }
+    }
+  ],
+  "out": [
+    {
+      "type": 0,
+      "spent": true,
+      "value": 3.744e6,
+      "n": 0,
+      "tx_index": 6017350324759491,
+      "script": "76a914659042e01e864e2f29641ea3a213c51a956d33c788ac",
+      "addr": "1AG24pctoCpEMfSvEKfUZqaGYnz8ey8BfF",
+      "spending_outpoints": [{ "tx_index": 2024241060021029, "n": 0 }]
+    },
+    {
+      "type": 0,
+      "spent": true,
+      "value": 1.01892e6,
+      "n": 1,
+      "tx_index": 6017350324759491,
+      "script": "76a9144fc238bcda3f884ff6ce8d9feeb89b50dfd3da8888ac",
+      "addr": "18Gj3unkApi17yh24JF6WwhN635SfABFMj",
+      "spending_outpoints": [{ "tx_index": 6629849515731839, "n": 456 }]
+    }
+  ]
+}

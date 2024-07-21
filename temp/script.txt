@@ -1,0 +1,66 @@
+#ifndef BLOCKCOIN_SCRIPT
+#define BLOCKCOIN_SCRIPT
+
+#include <string>
+#include <sstream>
+#include <iomanip>
+
+/**
+ * @todo integrate with input.hpp
+ */
+namespace tin_blockchain
+{
+    class ScriptSig
+    {
+    public:
+        std::string asmScript;
+        std::string hex;
+
+        ScriptSig(const std::string &asmScript, const std::string &hex)
+            : asmScript(asmScript), hex(hex) {}
+
+        std::string toString() const
+        {
+            std::ostringstream oss;
+            oss << "{"
+                << "\"asm\": " << std::quoted(asmScript)
+                << ", \"hex\": " << std::quoted(hex)
+                << "}";
+            return oss.str();
+        }
+    };
+
+    class ScriptPubKey
+    {
+    public:
+        std::string asmScript;
+        std::string hex;
+        int reqSigs;
+        std::string type;
+        std::vector<std::string> addresses;
+
+        ScriptPubKey(const std::string &asmScript, const std::string &hex, int reqSigs, const std::string &type, const std::vector<std::string> &addresses)
+            : asmScript(asmScript), hex(hex), reqSigs(reqSigs), type(type), addresses(addresses) {}
+
+        std::string toString() const
+        {
+            std::ostringstream oss;
+            oss << "{"
+                << "\"asm\": " << std::quoted(asmScript)
+                << ", \"hex\": " << std::quoted(hex)
+                << ", \"reqSigs\": " << reqSigs
+                << ", \"type\": " << std::quoted(type)
+                << ", \"addresses\": [";
+            for (size_t i = 0; i < addresses.size(); ++i)
+            {
+                oss << std::quoted(addresses[i]);
+                if (i < addresses.size() - 1)
+                    oss << ", ";
+            }
+            oss << "]}";
+            return oss.str();
+        }
+    };
+}
+
+#endif
